@@ -9,14 +9,24 @@ export default function TodoForm({addTodo}) {
 
     function handleTodoFormSubmit(e){
         e.preventDefault();
-        addTodo(todoValue)
+        if(todoValue !== " "){
+        const todoObj = {
+            data : todoValue,
+            id : Date.now(),
+            isCompleted: false
+        }
+        addTodo(todoObj)
         setTodoValue(" ");
+    }
     }
 
   return(
+    <>
+    <h3>Todo-List</h3>
    <form>
     <input type="text" name="todo" value={todoValue} onChange={handleInputChange}/>
     <button onClick={handleTodoFormSubmit}>Add</button>
   </form>
+    </>
   );
 }
